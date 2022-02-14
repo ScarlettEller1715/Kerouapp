@@ -19,7 +19,7 @@ function ManualForm({ addNewTrip }) {
             },
             body: JSON.stringify(newTrip)
         }).then(res => res.json())
-        .then(data => console.log("done!"))
+        .then(() => console.log("done!"))
         addNewTrip(newTrip)
     }
     
