@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import APIForm from "./APIForm";
 import ManualForm from "./ManualForm";
 
-function Planning() {
+function Planning({ addNewTrip }) {
     
     const [showForm, setShowForm] = useState(false)
     
@@ -19,7 +19,7 @@ function Planning() {
             </div>
             <button onClick={showManualForm}>Enter your intinerary manually!</button>
             <div className={showForm ? "form" : "hidden"}>
-                <ManualForm />
+                <ManualForm addNewTrip={addNewTrip} />
             </div>
         </div>
     )
