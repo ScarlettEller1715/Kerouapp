@@ -5,7 +5,7 @@ function Home() {
         <div>
             <h1>Welcome to KerouacApp</h1>
             <h2>Your roadtrip planning application</h2>
-            <p>Explanation paragraph goes here.</p>
+            <p>DAN TEST CHANGE. Explanation paragraph goes here.</p>
             <button>Plan Your Trip!</button>
         </div>
     )
