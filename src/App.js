@@ -9,6 +9,7 @@ import Itinerary from "./Itinerary";
 function App() {
   
  const [rawData, setRawData] = useState([])
+
  
   useEffect(() => {
     fetch('http://localhost:3000/Itinerary')
@@ -17,14 +18,22 @@ function App() {
   }, [])
 
   function addNewTrip(newTrip) {
-    console.log("hey", newTrip)
     setRawData([
       ...rawData,
       newTrip
     ])    
   }
 
-  console.log(rawData)
+  function deleteTrip(id) {
+    const updatedData = rawData.filter((trip) => {
+      if (trip.id === id) {
+        return null
+      } else {
+        return trip
+      }
+    })
+    setRawData(updatedData)
+  }
   
   return (
     <div className="App">
@@ -34,7 +43,7 @@ function App() {
           </Route>
           <Route exact path="/planning" element={<Planning addNewTrip={addNewTrip}/>}>
           </Route>
-          <Route exact path="/itinerary" element={<Itinerary rawData={rawData}/>}>
+          <Route exact path="/itinerary" element={<Itinerary deleteTrip={deleteTrip} rawData={rawData}/>}>
           </Route>
       </Routes>
     </div>

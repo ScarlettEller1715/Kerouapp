@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
-function APIForm() {
-    const [origin, setOrigin] = useState("")
-    const [destination, setDestination] = useState("")
+function APIForm({ addNewTrip }) {
+    const [origin, setOrigin] = useState("") 
+    const [destination, setDestination] = useState("") 
     const [calculatedDistance, setCalculatedDistance] = useState("")
-    const [calculatedDuration, setCalculatedDuration] = useState("")
-    // const [calculatedFuelCost, setCalculatedFuelCost] = useState("")
+    const [calculatedDuration, setCalculatedDuration] = useState("") 
     const [currentPriceNumber, setCurrentPriceNumber] = useState("")
     const [currentPriceString, setCurrentPriceString] = useState("")
-    // const [currentDate, setCurrentDate] = useState("")
-    const [returnedDistance, setReturnedDistance] = useState("")
+    const [returnedDistance, setReturnedDistance] = useState("") 
+
+    const navigate = useNavigate();
 
     const avgMilesPerGallon = 25.7
     const tripPrice = (returnedDistance/avgMilesPerGallon)*currentPriceNumber
@@ -21,18 +23,6 @@ function APIForm() {
         }, []);
 
         function workWithFuelData(fuelData) {
-            console.log(fuelData)
-
-            const currentWeek = fuelData.series[0].data[0][0]
-            console.log(currentWeek)
-
-            const dateString = currentWeek;
-            const year = +dateString.substring(0, 4);
-            const month = +dateString.substring(4, 6);
-            const day = +dateString.substring(6, 8);
-
-            const date = new Date(year, month - 1, day);
-            console.log(date)
 
             const currentPrice = fuelData.series[0].data[0][1]
             setCurrentPriceNumber(currentPrice)
@@ -53,21 +43,53 @@ function APIForm() {
     }
 
     function workWithTravelData(travelData) {
-    console.log(travelData)
 
     const returnedDistance = travelData.resourceSets[0].resources[0].travelDistance
-    console.log(returnedDistance)
     setReturnedDistance(returnedDistance)
 
-    const calculatedDistance = `${Math.round(returnedDistance)} Miles`
-    console.log(calculatedDistance)
+    const calculatedDistance = Math.round(returnedDistance)
     setCalculatedDistance(calculatedDistance)
 
     const returnedDuration = travelData.resourceSets[0].resources[0].travelDuration
 
-    const calculatedDuration = `${Math.round(returnedDuration/60)} Minutes`
+    const calculatedDuration = Math.round(returnedDuration/60)
     setCalculatedDuration(calculatedDuration)
     }
+
+    
+    
+    
+    function addToItinerary(e) {
+        e.preventDefault()
+        
+        function minutesConversion(calculatedDuration) {
+            const h = Math.floor(calculatedDuration/60)
+            const m = calculatedDuration%60;
+            return (`${h} hours and ${m} minutes`)
+        }
+        
+        const newTrip = {
+        "id": uuid(),
+        "origin": origin,
+        "destination": destination,
+        "distance": calculatedDistance,
+        "totalTime": calculatedDuration,
+        "timeString": minutesConversion(calculatedDuration),
+        "gasCost": tripPrice.toFixed(2)
+        }
+
+        fetch("http://localhost:3000/Itinerary", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newTrip)
+        }).then(res => res.json())
+        .then(() => alert("This trip has been added to your itinerary."))
+        addNewTrip(newTrip)
+        navigate('/itinerary')
+            
+        }
 
 
     return (
@@ -141,13 +163,16 @@ function APIForm() {
         <tr>
         <td>{origin}</td>
         <td>{destination}</td>
-        <td>{calculatedDistance}</td>
-        <td>{calculatedDuration}</td>
+        <td>{calculatedDistance} miles</td>
+        <td>{calculatedDuration} minutes</td>
         <td>25.7</td>
         <td>$ {tripPrice.toFixed(2)}</td>
         </tr>
         </tbody>
         </table>
+        <div>
+            <button onClick={addToItinerary}>Add to Itinerary!</button>
+        </div>
     </div>
 
     )
