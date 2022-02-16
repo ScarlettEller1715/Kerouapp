@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
+import InlineStyleComponent from "./InlineStyleComponent";
+import SeeDoList from "./SeeDoList";
+
+
 
 function APIForm({ addNewTrip }) {
     const [origin, setOrigin] = useState("") 
@@ -10,6 +14,9 @@ function APIForm({ addNewTrip }) {
     const [currentPriceNumber, setCurrentPriceNumber] = useState("")
     const [currentPriceString, setCurrentPriceString] = useState("")
     const [returnedDistance, setReturnedDistance] = useState("") 
+    const [attractions, setAttractions] = useState([])
+    const [coords, setCoords] =  useState([40.70521458001793, -74.0138932732414])
+
 
     const navigate = useNavigate();
 
@@ -40,6 +47,10 @@ function APIForm({ addNewTrip }) {
 
     .then((res) => res.json())
     .then((allData) => workWithTravelData(allData))
+    .then((allData) => {
+        workWithTravelData(allData)
+        setCoords([allData.resourceSets[0].resources[0].bbox[0], allData.resourceSets[0].resources[0].bbox[1]])
+    })
     }
 
     function workWithTravelData(travelData) {
@@ -54,8 +65,25 @@ function APIForm({ addNewTrip }) {
 
     const calculatedDuration = Math.round(returnedDuration/60)
     setCalculatedDuration(calculatedDuration)
+    const destinationLat = travelData.resourceSets[0].resources[0].bbox[0]
+
+    const destinationLong = travelData.resourceSets[0].resources[0].bbox[1]
+
+    const destinationLatLong = `${destinationLat},${destinationLong},5000`
+
+    fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?type=SeeDo&userLocation=${destinationLatLong}&key=Ai0Xpx5Q7OjkahP5SvkQXU_7RbKxnsjwr7uguMI4UDBXoioYTfERREvHKS7brxbt`)
+
+    .then((res) => res.json())
+    .then((places) => workWithPlaces(places))
     }
 
+    function workWithPlaces(placeData) {
+        console.log(placeData)
+
+    const attractions = placeData.resourceSets[0].resources
+    console.log(attractions)
+    setAttractions(attractions)
+    }
     
     
     
@@ -136,13 +164,11 @@ function APIForm({ addNewTrip }) {
             <thead>
             <tr>
             <th>Avg. US Price of Gasoline This Week</th>
-            {/* <th>As of:</th> */}
             </tr>
             </thead>
             <tbody>
             <tr>
             <td>{currentPriceString}</td>
-            {/* <td>date</td> */}
             </tr>
             </tbody>
         </table>
@@ -172,6 +198,12 @@ function APIForm({ addNewTrip }) {
         </table>
         <div>
             <button onClick={addToItinerary}>Add to Itinerary!</button>
+        </div>
+        <div>
+        <SeeDoList atrractions={attractions} destination={destination}/>
+        </div>
+        <div>
+          <InlineStyleComponent coords={coords} />
         </div>
     </div>
 
