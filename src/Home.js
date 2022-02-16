@@ -11,10 +11,9 @@ function handleClick() {
     
     return(
         <div className="Homepage">
-            <h1 className="hpTitle">Welcome to KerouacApp</h1>
-            <h2>Your roadtrip planning application</h2>
-            <p>Explanation paragraph goes here.</p>
-            <button onClick={handleClick}>Plan Your Trip!</button>
+            <h1 className="hpTitle">Welcome to KerouApp</h1>
+            <h2 className="hpSub">Your roadtrip planning application</h2>
+            <button className="enterButton" onClick={handleClick}>Start your adventure...</button>
         </div>
     )
 }

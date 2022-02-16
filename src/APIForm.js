@@ -124,7 +124,7 @@ function APIForm({ addNewTrip }) {
 
 
     return (
-        <div>
+        <div className="pPageContent">
         <form onSubmit={handleFormSubmit}>
             <h3>Use this form to calculate trip distance and fuel costs for a leg of your trip</h3>
             <input
@@ -149,7 +149,8 @@ function APIForm({ addNewTrip }) {
         </form>
         <br />
 
-        <table>
+    <div className="tables">
+        <table className="table">
             <thead>
             <tr>
             <th>Avg. Fuel Economy MPG</th>
@@ -163,7 +164,7 @@ function APIForm({ addNewTrip }) {
         </table>
         <br />
 
-        <table>
+        <table className="table">
             <thead>
             <tr>
             <th>Avg. US Price of Gasoline This Week</th>
@@ -177,28 +178,91 @@ function APIForm({ addNewTrip }) {
         </table>
         <br />
 
-        <table>
-        <thead>
-        <tr>
-        <th>Origin</th>
-        <th>Destination</th>
-        <th>Total Distance</th>
-        <th>Driving Time</th>
-        <th>Avg.Fuel Economy MPG</th>
-        <th>Fuel costs</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-        <td>{origin}</td>
-        <td>{destination}</td>
-        <td>{calculatedDistance} miles</td>
-        <td>{calculatedDuration} minutes</td>
-        <td>25.7</td>
-        <td>$ {tripPrice.toFixed(2)}</td>
-        </tr>
-        </tbody>
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Origin</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>{origin}</td>
+            </tr>
+            </tbody>
         </table>
+        <br />
+
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Destination</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>{destination}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Total Distance</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>{calculatedDistance} miles</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Driving Time</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>{calculatedDuration} minutes</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Avg.Fuel Economy MPG</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>25.7</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Fuel costs</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>$ {tripPrice.toFixed(2)}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
+    </div>
         <div>
             <button onClick={addToItinerary}>Add to Itinerary!</button>
         </div>

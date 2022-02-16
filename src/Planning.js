@@ -8,7 +8,7 @@ function Planning({ addNewTrip }) {
     //     }
     
     return (
-        <div>
+        <div className="planningPage">
             <h1>Where do you want to go?</h1>
             <div>
                 <APIForm addNewTrip={addNewTrip} 
