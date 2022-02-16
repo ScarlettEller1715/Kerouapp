@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
-import InlineStyleComponent from "./InlineStyleComponent";
+// import InlineStyleComponent from "./InlineStyleComponent";
 import SeeDoList from "./SeeDoList";
 
 
@@ -15,7 +15,7 @@ function APIForm({ addNewTrip }) {
     const [currentPriceString, setCurrentPriceString] = useState("")
     const [returnedDistance, setReturnedDistance] = useState("") 
     const [attractions, setAttractions] = useState([])
-    const [coords, setCoords] =  useState([40.70521458001793, -74.0138932732414])
+    // const [coords, setCoords] =  useState([40.70521458001793, -74.0138932732414])
 
 
     const navigate = useNavigate();
@@ -49,11 +49,14 @@ function APIForm({ addNewTrip }) {
     .then((allData) => workWithTravelData(allData))
     .then((allData) => {
         workWithTravelData(allData)
-        setCoords([allData.resourceSets[0].resources[0].bbox[0], allData.resourceSets[0].resources[0].bbox[1]])
+        // setCoords([allData.resourceSets[0].resources[0].bbox[0], allData.resourceSets[0].resources[0].bbox[1]])
     })
     }
 
     function workWithTravelData(travelData) {
+
+    // const coords = [travelData.resourceSets[0].resources[0].bbox[0], travelData.resourceSets[0].resources[0].bbox[1]]
+    // setCoords(coords)
 
     const returnedDistance = travelData.resourceSets[0].resources[0].travelDistance
     setReturnedDistance(returnedDistance)
@@ -202,9 +205,9 @@ function APIForm({ addNewTrip }) {
         <div>
         <SeeDoList atrractions={attractions} destination={destination}/>
         </div>
-        <div>
+        {/* <div>
           <InlineStyleComponent coords={coords} />
-        </div>
+        </div> */}
     </div>
 
     )
