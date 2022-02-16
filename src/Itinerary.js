@@ -32,7 +32,7 @@ function Itinerary({ rawData, deleteTrip }) {
 
 
     return (
-        <div>
+        <div className="itineraryPage">
             <h1>Your Itinerary:</h1>
             {renderedData}
             {sumCollection}

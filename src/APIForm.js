@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { v4 as uuid } from "uuid";
-// import InlineStyleComponent from "./InlineStyleComponent";
-import SeeDoList from "./SeeDoList";
-
+import CardContainer from "./CardContainer";
 
 
 function APIForm({ addNewTrip }) {
@@ -14,9 +12,10 @@ function APIForm({ addNewTrip }) {
     const [currentPriceNumber, setCurrentPriceNumber] = useState("")
     const [currentPriceString, setCurrentPriceString] = useState("")
     const [returnedDistance, setReturnedDistance] = useState("") 
+    const [destinationLatLong, setDestinationLatLong] = useState([])
+    const [category, setCategory] = useState("")
     const [attractions, setAttractions] = useState([])
-    // const [coords, setCoords] =  useState([40.70521458001793, -74.0138932732414])
-
+  
 
     const navigate = useNavigate();
 
@@ -38,8 +37,6 @@ function APIForm({ addNewTrip }) {
             setCurrentPriceString(price)
         }
 
-
-
     function handleFormSubmit(e) {
         e.preventDefault()
 
@@ -47,16 +44,9 @@ function APIForm({ addNewTrip }) {
 
     .then((res) => res.json())
     .then((allData) => workWithTravelData(allData))
-    .then((allData) => {
-        workWithTravelData(allData)
-        // setCoords([allData.resourceSets[0].resources[0].bbox[0], allData.resourceSets[0].resources[0].bbox[1]])
-    })
     }
 
     function workWithTravelData(travelData) {
-
-    // const coords = [travelData.resourceSets[0].resources[0].bbox[0], travelData.resourceSets[0].resources[0].bbox[1]]
-    // setCoords(coords)
 
     const returnedDistance = travelData.resourceSets[0].resources[0].travelDistance
     setReturnedDistance(returnedDistance)
@@ -68,28 +58,15 @@ function APIForm({ addNewTrip }) {
 
     const calculatedDuration = Math.round(returnedDuration/60)
     setCalculatedDuration(calculatedDuration)
-    const destinationLat = travelData.resourceSets[0].resources[0].bbox[0]
+    
+    const destinationLat = travelData.resourceSets[0].resources[0].routeLegs[0].actualEnd.coordinates[0]
 
-    const destinationLong = travelData.resourceSets[0].resources[0].bbox[1]
+    const destinationLong = travelData.resourceSets[0].resources[0].routeLegs[0].actualEnd.coordinates[1]
 
     const destinationLatLong = `${destinationLat},${destinationLong},5000`
-
-    fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?type=SeeDo&userLocation=${destinationLatLong}&key=Ai0Xpx5Q7OjkahP5SvkQXU_7RbKxnsjwr7uguMI4UDBXoioYTfERREvHKS7brxbt`)
-
-    .then((res) => res.json())
-    .then((places) => workWithPlaces(places))
+    setDestinationLatLong(destinationLatLong)
     }
-
-    function workWithPlaces(placeData) {
-        console.log(placeData)
-
-    const attractions = placeData.resourceSets[0].resources
-    console.log(attractions)
-    setAttractions(attractions)
-    }
-    
-    
-    
+   
     function addToItinerary(e) {
         e.preventDefault()
         
@@ -121,7 +98,25 @@ function APIForm({ addNewTrip }) {
         navigate('/itinerary')
             
         }
-
+        
+        function handleCategoryChange(e) {
+            // console.log(e.target.value)
+            const categorySelection = e.target.value
+            setCategory(categorySelection)
+        
+            fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?type=${e.target.value}&userLocation=${destinationLatLong}&key=Ai0Xpx5Q7OjkahP5SvkQXU_7RbKxnsjwr7uguMI4UDBXoioYTfERREvHKS7brxbt`)
+        
+            .then((res) => res.json())
+            .then((places) => workWithPlaces(places))
+        }
+        
+        function workWithPlaces(placeData) {
+            // console.log(placeData)
+        
+            const attractions = placeData.resourceSets[0].resources
+            console.log(attractions)
+            setAttractions(attractions)
+        }
 
     return (
         <div className="pPageContent">
@@ -266,12 +261,29 @@ function APIForm({ addNewTrip }) {
         <div>
             <button onClick={addToItinerary}>Add to Itinerary!</button>
         </div>
-        <div>
-        <SeeDoList atrractions={attractions} destination={destination}/>
+       <div>
+        <h3>Things to See and Do in {destination}</h3>
+        {/* <button text="See List">See List</button> */}
+
+        <label for="categories">Choose a category:</label>
+
+        <select onChange={handleCategoryChange} name="categories" id="categories">
+        <option value="">Select</option>
+        <option value="Museums">Museums</option>
+        <option value="Parks">Parks</option>
+        <option value="SightseeingTours">Sightseeing Tours</option>
+        <option value="LandmarksAndHistoricalSites">Landmarks</option>
+        <option value="Attractions">Misc Atrractions</option>
+        <option value="Parking">Parking</option>
+        <option value="Bars">Bars</option>
+        <option value="Restaurants">Restaurants</option>
+        <option value="Shopping">Shopping</option>
+        <option value="Hospitals">Hospitals</option>
+        <option value="HotelsAndMotels">Hotels</option>
+        </select>
+        <CardContainer attractions={attractions}/>
         </div>
-        {/* <div>
-          <InlineStyleComponent coords={coords} />
-        </div> */}
+    
     </div>
 
     )

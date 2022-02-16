@@ -70,6 +70,7 @@ code {
   font-size: large;
   background-color: rgba(0, 0, 0, .1);
   padding: 1vw;
+  width: 100vw
 }
 .navbar:hover {
   background-color: rgba(0, 0, 0, .5);
@@ -133,6 +134,10 @@ overflow: hidden;
   display: flex;
   font-size: 250%;
   padding-bottom: 5%;
+}
+
+.itineraryPage {
+  color: white
 }
 
 
