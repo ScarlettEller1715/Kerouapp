@@ -23,10 +23,10 @@ function ItineraryReduce({ distanceArray, minutesArray, gasArray }) {
 
 
     return (
-        <div>
-            <h3>Total Distance: {distanceSum} miles</h3>
-            <h3>Total driving time appoximately {minutesConversion(minutesSum)}</h3>
-            <h4>Estimated gas costs: ${gasSum}</h4>
+        <div className="itineraryReduce">
+            <h3 className="totalDistance">Total Distance: {distanceSum} miles</h3>
+            <h3 className="totalTime">Total driving time appoximately {minutesConversion(minutesSum)}</h3>
+            <h4 className="totalGas">Estimated gas costs: ${gasSum}</h4>
         </div>
 
     )

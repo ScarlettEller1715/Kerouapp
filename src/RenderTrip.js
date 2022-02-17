@@ -19,6 +19,8 @@ function RenderTrip({ origin, destination, distance, totalTime, timeString, gasC
             <div className="tripButtonCenter">
             <button className="tripDeleteButton" onClick={handleClick}>X</button>
             </div>
+            <hr className="Line">
+            </hr>
         </div>
     )
 }
