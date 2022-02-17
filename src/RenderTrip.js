@@ -15,10 +15,12 @@ function RenderTrip({ origin, destination, distance, totalTime, timeString, gasC
             <h2 className="tripLabel">{origin} to {destination}</h2>
             <h4 className="tripTime">{timeString}</h4>
             <p className="tripDistance">{distance} miles</p>
-            <p>It will cost approximately ${gasCost} for the gas this trip requires.</p>
+            <p className="tripGas">It will cost approximately ${gasCost} for the gas this trip requires.</p>
             <div className="try">
             <button className="tripDeleteButton" onClick={handleClick}>X</button>
             </div>
+            <hr className="Line">
+            </hr>
         </div>
     )
 }
