@@ -220,7 +220,7 @@ overflow: hidden;
   fill: green;
 }
 
-.try {
+.tripButtonCenter {
   display: flex;
   justify-content: center;
 }
