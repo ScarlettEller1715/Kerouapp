@@ -11,12 +11,14 @@ function RenderTrip({ origin, destination, distance, totalTime, timeString, gasC
     
     
     return (
-        <div>
-            <h2>{origin} to {destination}</h2>
-            <h4>{timeString}</h4>
-            <p>{distance} miles</p>
-            <p>You will pay approximately ${gasCost} for the gas required to reach your destination.</p>
-            <button onClick={handleClick}>X</button>
+        <div className="itineraryItem">
+            <h2 className="tripLabel">{origin} to {destination}</h2>
+            <h4 className="tripTime">{timeString}</h4>
+            <p className="tripDistance">{distance} miles</p>
+            <p>It will cost approximately ${gasCost} for the gas this trip requires.</p>
+            <div className="try">
+            <button className="tripDeleteButton" onClick={handleClick}>X</button>
+            </div>
         </div>
     )
 }
