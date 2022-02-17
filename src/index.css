@@ -87,12 +87,28 @@ code {
 display: flex;
 flex-direction: column;
 align-items: center;
+/* justify-content: center; */
 background-color: whitesmoke;
 color: black;
 padding: 1vw;
 height: auto;
-overflow: hidden;
+/* overflow: hidden; */
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
 }
+
+.form-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: whitesmoke;
+  color: black;
+  padding: 1vw;
+  height: auto;
+  /* overflow: hidden; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
 
  .tables {
   display: flex;
@@ -247,4 +263,75 @@ overflow: hidden;
   margin: 1rem 2rem;
   box-shadow: 3px 4px #1d3b0e;
   background-color: #c9c9c9;
+}
+
+.add-button {
+  align-self: center;
+  background-color: #e2e3e1;
+  background-image: none;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.add-button:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.add-button:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+/* .input-form {
+  display: inline-block;
+  justify-content: center;
+} */
+
+/* button [type=submit] {
+  align-self: center;
+  background-color: #e2e3e1;
+  background-image: none;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+} */
+
+.select {
+  margin: 50px;
+  width: 150px;
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  border: 1px solid #CCC;
+  height: 34px;
 }

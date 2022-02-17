@@ -6,12 +6,12 @@ function Planning({ addNewTrip }) {
     // function setTripLeg(data, f) {
     //     console.log('Displaying Trip Leg with this data:', data)
     //     }
-    
+
     return (
         <div className="planningPage">
-            <h1>Where do you want to go?</h1>
+            <h1>Start Your Adventure</h1>
             <div>
-                <APIForm addNewTrip={addNewTrip} 
+                <APIForm addNewTrip={addNewTrip}
                 // setTripLeg={setTripLeg}
                 />
             </div>
