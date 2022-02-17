@@ -5,21 +5,22 @@ import CardContainer from "./CardContainer";
 
 
 function APIForm({ addNewTrip }) {
-    const [origin, setOrigin] = useState("") 
-    const [destination, setDestination] = useState("") 
+    const [origin, setOrigin] = useState("")
+    const [destination, setDestination] = useState("")
     const [calculatedDistance, setCalculatedDistance] = useState("")
-    const [calculatedDuration, setCalculatedDuration] = useState("") 
+    const [calculatedDuration, setCalculatedDuration] = useState("")
     const [currentPriceNumber, setCurrentPriceNumber] = useState("")
     const [currentPriceString, setCurrentPriceString] = useState("")
-    const [returnedDistance, setReturnedDistance] = useState("") 
+    const [returnedDistance, setReturnedDistance] = useState("")
     const [destinationLatLong, setDestinationLatLong] = useState([])
     const [category, setCategory] = useState("")
     const [attractions, setAttractions] = useState([])
-  
+    const [fuelEconomy, setFuelEconomy] = useState(25.7)
+
 
     const navigate = useNavigate();
 
-    const avgMilesPerGallon = 25.7
+    const avgMilesPerGallon = fuelEconomy
     const tripPrice = (returnedDistance/avgMilesPerGallon)*currentPriceNumber
 
         useEffect(() => {
@@ -58,7 +59,7 @@ function APIForm({ addNewTrip }) {
 
     const calculatedDuration = Math.round(returnedDuration/60)
     setCalculatedDuration(calculatedDuration)
-    
+
     const destinationLat = travelData.resourceSets[0].resources[0].routeLegs[0].actualEnd.coordinates[0]
 
     const destinationLong = travelData.resourceSets[0].resources[0].routeLegs[0].actualEnd.coordinates[1]
@@ -66,16 +67,16 @@ function APIForm({ addNewTrip }) {
     const destinationLatLong = `${destinationLat},${destinationLong},5000`
     setDestinationLatLong(destinationLatLong)
     }
-   
+
     function addToItinerary(e) {
         e.preventDefault()
-        
+
         function minutesConversion(calculatedDuration) {
             const h = Math.floor(calculatedDuration/60)
             const m = calculatedDuration%60;
             return (`${h} hours and ${m} minutes`)
         }
-        
+
         const newTrip = {
         "id": uuid(),
         "origin": origin,
@@ -96,23 +97,23 @@ function APIForm({ addNewTrip }) {
         .then(() => alert("This trip has been added to your itinerary."))
         addNewTrip(newTrip)
         navigate('/itinerary')
-            
+
         }
-        
+
         function handleCategoryChange(e) {
             // console.log(e.target.value)
             const categorySelection = e.target.value
             setCategory(categorySelection)
-        
-            fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?type=${e.target.value}&userLocation=${destinationLatLong}&key=Ai0Xpx5Q7OjkahP5SvkQXU_7RbKxnsjwr7uguMI4UDBXoioYTfERREvHKS7brxbt`)
-        
+
+            fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?type=${e.target.value}&userLocation=${destinationLatLong}&maxResults=12&key=Ai0Xpx5Q7OjkahP5SvkQXU_7RbKxnsjwr7uguMI4UDBXoioYTfERREvHKS7brxbt`)
+
             .then((res) => res.json())
             .then((places) => workWithPlaces(places))
         }
-        
+
         function workWithPlaces(placeData) {
             // console.log(placeData)
-        
+
             const attractions = placeData.resourceSets[0].resources
             console.log(attractions)
             setAttractions(attractions)
@@ -134,6 +135,11 @@ function APIForm({ addNewTrip }) {
             onChange={(e) => setDestination(e.target.value)}
             placeholder="Destination"
             />
+            <input type="text"
+            name={fuelEconomy}
+            onChange={(e) => setFuelEconomy(e.target.value)}
+            placeholder="Vehicle MPG (optional)"
+            />
             <br />
             <input
             type="submit"
@@ -148,12 +154,12 @@ function APIForm({ addNewTrip }) {
         <table className="table">
             <thead>
             <tr>
-            <th>Avg. Fuel Economy MPG</th>
+            <th>Fuel Economy MPG</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-            <td>{avgMilesPerGallon}</td>
+            <td>{fuelEconomy}</td>
             </tr>
             </tbody>
         </table>
@@ -228,21 +234,6 @@ function APIForm({ addNewTrip }) {
             </tbody>
         </table>
         <br />
-
-        <table className="table">
-            <thead>
-            <tr>
-            <th>Avg.Fuel Economy MPG</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>25.7</td>
-            </tr>
-            </tbody>
-        </table>
-        <br />
-
         <table className="table">
             <thead>
             <tr>
@@ -258,12 +249,13 @@ function APIForm({ addNewTrip }) {
         <br />
 
     </div>
+     <br />
         <div>
             <button onClick={addToItinerary}>Add to Itinerary!</button>
         </div>
        <div>
         <h3>Things to See and Do in {destination}</h3>
-        {/* <button text="See List">See List</button> */}
+
 
         <label for="categories">Choose a category:</label>
 
@@ -283,7 +275,7 @@ function APIForm({ addNewTrip }) {
         </select>
         <CardContainer attractions={attractions}/>
         </div>
-    
+
     </div>
 
     )

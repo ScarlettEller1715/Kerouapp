@@ -11,7 +11,10 @@ function CardContainer({attractions}) {
 
 
   return (
-    <div>{attractionCards}</div>
+    <div>
+    <div className="card-container">{attractionCards}</div>
+    <br />
+    </div>
   )
 }
 
