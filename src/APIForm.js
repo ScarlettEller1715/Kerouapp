@@ -17,7 +17,6 @@ function APIForm({ addNewTrip }) {
     const [attractions, setAttractions] = useState([])
     const [fuelEconomy, setFuelEconomy] = useState(25.7)
 
-
     const navigate = useNavigate();
 
     const avgMilesPerGallon = fuelEconomy
@@ -120,9 +119,11 @@ function APIForm({ addNewTrip }) {
         }
 
     return (
-        <div className="pPageContent">
-        <form onSubmit={handleFormSubmit}>
-            <h3>Use this form to calculate trip distance and fuel costs for a leg of your trip</h3>
+        <div>
+
+        <div className="form-page">
+        <form className="input-form" onSubmit={handleFormSubmit}>
+            <h2>Where do you want to go?</h2>
             <input
             type="text"
             name={origin}
@@ -141,43 +142,18 @@ function APIForm({ addNewTrip }) {
             placeholder="Vehicle MPG (optional)"
             />
             <br />
+            <br />
             <input
             type="submit"
             name="submit"
             value="Calculate New Trip Leg"
-            className="submit"
+            className="add-button"
           />
         </form>
+        </div>
         <br />
 
     <div className="tables">
-        <table className="table">
-            <thead>
-            <tr>
-            <th>Fuel Economy MPG</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>{fuelEconomy}</td>
-            </tr>
-            </tbody>
-        </table>
-        <br />
-
-        <table className="table">
-            <thead>
-            <tr>
-            <th>Avg. US Price of Gasoline This Week</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>{currentPriceString}</td>
-            </tr>
-            </tbody>
-        </table>
-        <br />
 
         <table className="table">
             <thead>
@@ -234,6 +210,35 @@ function APIForm({ addNewTrip }) {
             </tbody>
         </table>
         <br />
+
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Fuel Economy MPG</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>{fuelEconomy}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
+        <table className="table">
+            <thead>
+            <tr>
+            <th>Avg. US Price of Gasoline This Week </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>{currentPriceString}</td>
+            </tr>
+            </tbody>
+        </table>
+        <br />
+
         <table className="table">
             <thead>
             <tr>
@@ -251,15 +256,14 @@ function APIForm({ addNewTrip }) {
     </div>
      <br />
         <div>
-            <button onClick={addToItinerary}>Add to Itinerary!</button>
+            <button className="add-button" onClick={addToItinerary}>Add to Itinerary!</button>
         </div>
        <div>
-        <h3>Things to See and Do in {destination}</h3>
-
+        <h3> Things to See and Do in {destination}</h3>
 
         <label for="categories">Choose a category:</label>
 
-        <select onChange={handleCategoryChange} name="categories" id="categories">
+        <select className="select" onChange={handleCategoryChange} name="categories" id="categories">
         <option value="">Select</option>
         <option value="Museums">Museums</option>
         <option value="Parks">Parks</option>
