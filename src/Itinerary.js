@@ -33,7 +33,9 @@ function Itinerary({ rawData, deleteTrip }) {
 
     return (
         <div className="itineraryPage">
-            <h1>Your Itinerary:</h1>
+            <div className="itineraryTitle">
+                <h1>Your Itinerary:</h1>
+            </div>
             {renderedData}
             {sumCollection}
             <ItineraryReduce distanceArray={distanceArray} minutesArray={minutesArray} gasArray={gasArray}/>

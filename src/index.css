@@ -70,7 +70,8 @@ code {
   font-size: large;
   background-color: rgba(0, 0, 0, .1);
   padding: 1vw;
-  width: 100vw
+  width: 100vw;
+  transition: all, .2s
 }
 .navbar:hover {
   background-color: rgba(0, 0, 0, .5);
@@ -92,8 +93,6 @@ padding: 1vw;
 height: auto;
 overflow: hidden;
 }
-
-
 
  .tables {
   display: flex;
@@ -135,9 +134,96 @@ overflow: hidden;
 }
 
 .itineraryPage {
-  color: white
+display: flex;
+flex-direction: column;
+align-items: center;
+background-color: whitesmoke;
+width: 100vw;
+height: auto;
+overflow: hidden;
 }
 
+.itineraryTitle {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.5vw;
+}
+
+.itineraryItem {
+  align-items: center;
+  justify-content: center;
+}
+
+.tripLabel {
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2.5vw;
+  margin-bottom: 0%;
+}
+
+.tripTime {
+  display: flex;
+  margin-top: 1%;
+  font-size: 1.5vw;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0%;
+  font-style: italic;
+}
+
+.tripDistance {
+  display: flex;
+  justify-content: center;
+  font-size: 1.35vw;
+  margin-top: 2%;
+}
+
+.tripDeleteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  fill: #000;
+  font-family: Inter,sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 2vw;
+  letter-spacing: -.8px;
+  line-height: 24px;
+  width: 3vw;
+  outline: 0;
+  text-align: center;
+  text-decoration: none;
+  transition: all .3s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.tripDeleteButton:focus {
+  color: #171e29;
+}
+.tripDeleteButton:hover {
+  border-color: black;
+  color: black;
+  fill: black;
+  background: green;
+}
+.tripDeleteButton:active {
+  border-color: white;
+  color: white;
+  fill: green;
+}
+
+.try {
+  display: flex;
+  justify-content: center;
+}
 
 .hidden {
   visibility: hidden;
