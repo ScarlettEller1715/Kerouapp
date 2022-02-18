@@ -3,16 +3,11 @@ import APIForm from "./APIForm";
 
 function Planning({ addNewTrip }) {
 
-    // function setTripLeg(data, f) {
-    //     console.log('Displaying Trip Leg with this data:', data)
-    //     }
-
     return (
         <div className="planningPage">
             <h1 className="start-adventure">Mapping your journey...</h1>
             <div>
                 <APIForm addNewTrip={addNewTrip}
-                // setTripLeg={setTripLeg}
                 />
             </div>
         </div>

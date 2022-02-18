@@ -301,7 +301,6 @@ overflow: hidden;
 
 .card {
   text-align: center;
-  /* display: inline-grid; */
   border: grey solid 1px;
   padding: 1rem;
   width: 15rem;
@@ -309,6 +308,7 @@ overflow: hidden;
   margin: 1rem 2rem;
   box-shadow: 3px 4px #1d3b0e;
   background-color: #c9c9c9;
+  overflow: hidden;
 }
 
 .add-button {
@@ -388,10 +388,6 @@ overflow: hidden;
 }
 
 .fade-in-text {
-  /* display: inline-block;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 150px;
-  color: black; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -437,8 +433,4 @@ overflow: hidden;
   -moz-animation: fadeIn linear 1.5s;
   -o-animation: fadeIn linear 1.5s;
   -ms-animation: fadeIn linear 1.5s;
-}
-
-.fade-in-button {
-
 }

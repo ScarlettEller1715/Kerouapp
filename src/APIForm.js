@@ -100,7 +100,6 @@ function APIForm({ addNewTrip }) {
         }
 
         function handleCategoryChange(e) {
-            // console.log(e.target.value)
             const categorySelection = e.target.value
             setCategory(categorySelection)
 
@@ -111,10 +110,7 @@ function APIForm({ addNewTrip }) {
         }
 
         function workWithPlaces(placeData) {
-            // console.log(placeData)
-
             const attractions = placeData.resourceSets[0].resources
-            console.log(attractions)
             setAttractions(attractions)
         }
 
