@@ -9,7 +9,7 @@ function Planning({ addNewTrip }) {
 
     return (
         <div className="planningPage">
-            <h1>Start Your Adventure</h1>
+            <h1 className="start-adventure">Start your adventure...</h1>
             <div>
                 <APIForm addNewTrip={addNewTrip}
                 // setTripLeg={setTripLeg}

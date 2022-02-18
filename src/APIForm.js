@@ -104,7 +104,7 @@ function APIForm({ addNewTrip }) {
             const categorySelection = e.target.value
             setCategory(categorySelection)
 
-            fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?type=${e.target.value}&userLocation=${destinationLatLong}&maxResults=12&key=Ai0Xpx5Q7OjkahP5SvkQXU_7RbKxnsjwr7uguMI4UDBXoioYTfERREvHKS7brxbt`)
+            fetch(`https://dev.virtualearth.net/REST/v1/LocalSearch/?type=${e.target.value}&userLocation=${destinationLatLong}&maxResults=16&key=Ai0Xpx5Q7OjkahP5SvkQXU_7RbKxnsjwr7uguMI4UDBXoioYTfERREvHKS7brxbt`)
 
             .then((res) => res.json())
             .then((places) => workWithPlaces(places))
@@ -127,22 +127,23 @@ function APIForm({ addNewTrip }) {
             <input
             type="text"
             name={origin}
-            placeholder="Origin"
+            placeholder="Origin (new trip leg)"
             onChange={(e) => setOrigin(e.target.value)}
+            className="select"
             />
-            <br />
             <input type="text"
             name={destination}
             onChange={(e) => setDestination(e.target.value)}
             placeholder="Destination"
+            className="select"
+
             />
             <input type="text"
             name={fuelEconomy}
             onChange={(e) => setFuelEconomy(e.target.value)}
             placeholder="Vehicle MPG (optional)"
+            className="select"
             />
-            <br />
-            <br />
             <input
             type="submit"
             name="submit"
@@ -151,7 +152,6 @@ function APIForm({ addNewTrip }) {
           />
         </form>
         </div>
-        <br />
 
     <div className="tables">
 
@@ -255,11 +255,12 @@ function APIForm({ addNewTrip }) {
 
     </div>
      <br />
-        <div>
+        <div className="button-container">
             <button className="add-button" onClick={addToItinerary}>Add to Itinerary!</button>
         </div>
-       <div>
-        <h3> Things to See and Do in {destination}</h3>
+       <div className="select-container">
+       <h2 className="find-places"> Find places in your destination</h2>
+        <h3 className="things-to-see"> Things to see and do, lodging, food and drink and more in: {destination}</h3>
 
         <label for="categories">Choose a category:</label>
 
