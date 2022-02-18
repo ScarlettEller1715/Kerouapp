@@ -22,7 +22,7 @@ code {
     monospace;
 }
 
-.enterButton {
+.fade-in-button {
   align-self: center;
   background-color: #fff;
   background-image: none;
@@ -52,12 +52,19 @@ code {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  animation: fadeIn linear 1.5s;
+  -webkit-animation: fadeIn linear 1.5s;
+  -moz-animation: fadeIn linear 1.5s;
+  -o-animation: fadeIn linear 1.5s;
+  -ms-animation: fadeIn linear 1.5s;
 }
-.enterButton:hover {
+
+.fade-in-button:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
   transform: translate3d(0, 2px, 0);
 }
-.enterButton:focus {
+
+.fade-in-button:focus {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
@@ -142,7 +149,7 @@ height: 40vw;
 overflow: hidden;
 }
 
-.hpTitle {
+/* .hpTitle {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,7 +162,7 @@ overflow: hidden;
   font-size: 250%;
   padding-top: 0%;
   padding-bottom: 5%;
-}
+} */
 
 .itineraryPage {
 display: flex;
@@ -378,4 +385,60 @@ overflow: hidden;
 
 .start-adventure {
   margin-bottom: 1px
+}
+
+.fade-in-text {
+  /* display: inline-block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 150px;
+  color: black; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 500%;
+  animation: fadeIn linear 1.5s;
+  -webkit-animation: fadeIn linear 1.5s;
+  -moz-animation: fadeIn linear 1.5s;
+  -o-animation: fadeIn linear 1.5s;
+  -ms-animation: fadeIn linear 1.5s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+
+.fade-in-sub {
+  display: flex;
+  font-size: 250%;
+  padding-bottom: 5%;
+  animation: fadeIn linear 1.5s;
+  -webkit-animation: fadeIn linear 1.5s;
+  -moz-animation: fadeIn linear 1.5s;
+  -o-animation: fadeIn linear 1.5s;
+  -ms-animation: fadeIn linear 1.5s;
+}
+
+.fade-in-button {
+
 }
