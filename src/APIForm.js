@@ -259,8 +259,8 @@ function APIForm({ addNewTrip }) {
             <button className="add-button" onClick={addToItinerary}>Add to Itinerary!</button>
         </div>
        <div className="select-container">
-       <h2 className="find-places"> Find places in your destination</h2>
-        <h3 className="things-to-see"> Things to see and do, lodging, food and drink and more in: {destination}</h3>
+       <h2 className="find-places">Recommendations in your destination:</h2>
+        <h3 className="things-to-see">Lodging, food, things to see and do. {destination}</h3>
 
         <label for="categories">Choose a category:</label>
 
