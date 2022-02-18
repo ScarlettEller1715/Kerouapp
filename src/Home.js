@@ -13,7 +13,7 @@ function handleClick() {
         <div className="Homepage">
             <h1 className="hpTitle">Welcome to KerouApp</h1>
             <h2 className="hpSub">Your roadtrip planning application</h2>
-            <button className="enterButton" onClick={handleClick}>Start your adventure...</button>
+            <button className="enterButton" onClick={handleClick}>The adventure starts here...</button>
         </div>
     )
 }

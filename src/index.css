@@ -37,7 +37,7 @@ code {
   color: #41403e;
   cursor: pointer;
   display: inline-block;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Abril-Flatface, Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
   font-weight: bold;
   line-height: 23px;
@@ -120,7 +120,7 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  .tables {
   display: flex;
   justify-content: space-evenly;
-  outline: auto;
+  outline: auto; 
 }
 
 .table {
@@ -128,7 +128,6 @@ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   align-items: center;
   flex-direction: column;
   justify-content: space-evenly;
-  outline: auto;
   padding: 1vw;
 }
 
@@ -148,11 +147,13 @@ overflow: hidden;
   justify-content: center;
   align-items: center;
   font-size: 500%;
+  padding-bottom: 0%;
 }
 
 .hpSub {
   display: flex;
   font-size: 250%;
+  padding-top: 0%;
   padding-bottom: 5%;
 }
 
@@ -218,7 +219,7 @@ overflow: hidden;
   color: #000;
   cursor: pointer;
   fill: #000;
-  font-family: Inter,sans-serif;
+  font-family: Abril-Flatface, sans-serif;
   font-size: 16px;
   font-weight: 600;
   height: 2vw;
@@ -314,7 +315,7 @@ overflow: hidden;
   border-width: 2px;
   cursor: pointer;
   display: inline-block;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Abril-Flatface, Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
   font-weight: bold;
   line-height: 23px;
