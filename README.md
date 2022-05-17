@@ -6,6 +6,12 @@
 <h2>Tech Used -</h2>
 <p>HTML, CSS, React.js, Bing Maps API, Energy Information Administration API</p>
 
+# Images:
+
+
+<img src='Kerouapp 1.PNG' width='750'>
+<img src='Kerouapp 2.PNG' width='750'>
+
 <h2>How to start this application</h2>
 <ul>
   <li>Install required NPM nodes with the command "npm install"</li>
