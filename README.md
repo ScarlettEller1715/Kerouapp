@@ -1,7 +1,7 @@
 # Welcome to Kerouapp - The Adventure Starts Here
 
 <p>Kerouapp gives users access to information critical to planning a fun and exciting road trip. Details like distance, estimated driving time, and even estimated price of gas are all easily accessible by simply providing an origin and destination. This application can even recommend attractions and accomadations in any location.</p>
-<p>Originally built as the Phase 2 project for the Flatiron School Software Engineering Bootcamp by Scarlett Eller and Dan Baechtold.</p>
+<p>Originally built as the Phase 2 project for the Flatiron School Software Engineering Bootcamp.</p>
 
 **Made With:** 
 
