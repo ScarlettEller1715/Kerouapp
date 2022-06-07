@@ -21,4 +21,4 @@
  Developed by: 
 * [Scarlett Eller](https://github.com/ScarlettEller1715)
 * [Dan Baechtold](https://github.com/latebloomertech)
-* 
+
